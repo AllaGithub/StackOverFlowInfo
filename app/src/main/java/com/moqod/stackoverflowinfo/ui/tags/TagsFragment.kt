@@ -1,8 +1,6 @@
 package com.moqod.stackoverflowinfo.ui.tags
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +17,6 @@ import com.moqod.stackoverflowinfo.ui.base.BaseFragment
 import com.moqod.stackoverflowinfo.ui.datasource.TagsDataSource.Companion.START_POSITION
 import com.moqod.stackoverflowinfo.utils.showToastErrorMessage
 import kotlinx.android.synthetic.main.tags_fragment.*
-import java.util.concurrent.Executor
 import javax.inject.Inject
 
 class TagsFragment : BaseFragment<TagsViewModel>() {
@@ -28,10 +25,6 @@ class TagsFragment : BaseFragment<TagsViewModel>() {
     lateinit var networkStatus: NetworkStatus
 
     private lateinit var binding: TagsFragmentBinding
-
-    val mainThreadExecutor = Executor {
-        Handler(Looper.getMainLooper()).post(it)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,7 +51,7 @@ class TagsFragment : BaseFragment<TagsViewModel>() {
                     .setInitialKey(START_POSITION)
                     .setNotifyExecutor(mainThreadExecutor)
                     .setFetchExecutor(mainThreadExecutor).build()
-                setStreamAdapter(pagedList)
+                setAdapter(pagedList)
             }
         })
 
@@ -83,7 +76,7 @@ class TagsFragment : BaseFragment<TagsViewModel>() {
     }
 
 
-    private fun setStreamAdapter(pagedList: PagedList<Tag>) {
+    private fun setAdapter(pagedList: PagedList<Tag>) {
 
         val pagingAdapter = TagsAdapter(
             object : GenericListener<Tag> {

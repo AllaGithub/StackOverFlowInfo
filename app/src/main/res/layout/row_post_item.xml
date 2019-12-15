@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.moqod.stackoverflowinfo.entity.Post" />
+
+        <import type="com.moqod.stackoverflowinfo.utils.DateHelper"/>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/padding"
+        android:paddingLeft="@dimen/padding"
+        android:paddingRight="@dimen/padding"
+        android:paddingTop="@dimen/padding"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:layout_marginStart="@dimen/padding"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tvPostTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={item.title}"
+            android:textColor="@android:color/black"
+            tools:text="What is Microsoft?"/>
+
+        <TextView
+            android:id="@+id/tvOwner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={item.owner.name}"
+            android:textColor="@android:color/black"
+            tools:text="Bill Gates"/>
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:text="@{DateHelper.convertLongToTime(item.lastActivityDate)}"
+            tools:text="1/1/2019"/>
+
+    </LinearLayout>
+
+</layout>

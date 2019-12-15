@@ -6,6 +6,9 @@ import com.moqod.stackoverflowinfo.network.tags.TagsRepository
 import com.moqod.stackoverflowinfo.network.tags.TagsService
 import com.moqod.stackoverflowinfo.network.tags.TagsServiceImp
 import com.moqod.stackoverflowinfo.network.NetworkStatus
+import com.moqod.stackoverflowinfo.network.posts.PostsRespository
+import com.moqod.stackoverflowinfo.network.posts.PostsService
+import com.moqod.stackoverflowinfo.network.posts.PostsServiceImp
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
@@ -28,17 +31,28 @@ object NetworkModule {
     @Singleton
     @JvmStatic
     internal fun provideAccountRepo(tagsService: TagsService): TagsRepository {
-        return TagsServiceImp(
-            tagsService
-        )
+        return TagsServiceImp(tagsService)
     }
 
+    @Provides
+    @Singleton
+    @JvmStatic
+    internal fun providePostRepo(postService: PostsService): PostsRespository {
+        return PostsServiceImp(postService)
+    }
 
     @Provides
     @Reusable
     @JvmStatic
     internal fun provideTagService(@Named("apiRetrofit") retrofit: Retrofit): TagsService {
         return retrofit.create(TagsService::class.java)
+    }
+
+    @Provides
+    @Reusable
+    @JvmStatic
+    internal fun providePostService(@Named("apiRetrofit") retrofit: Retrofit): PostsService {
+        return retrofit.create(PostsService::class.java)
     }
 
 

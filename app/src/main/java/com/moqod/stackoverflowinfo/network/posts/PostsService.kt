@@ -16,7 +16,7 @@ interface PostsService {
         @Query("site") site: String,
         @Query("sort") sort: Post.Sort,
         @Query("order") order: Order,
-        @Query("tagges") tagged: String,
+        @Query("tagged") tagged: String,
         @Query("page") page: Int,
         @Query("pageSize") pageSize: Int): Single<Response<PostResponse>>
 }

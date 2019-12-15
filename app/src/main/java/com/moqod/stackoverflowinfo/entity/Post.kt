@@ -9,7 +9,26 @@ import com.google.gson.annotations.SerializedName
 class Post : BaseObservable() {
 
     enum class Sort {
-        ACTIVITY, VOTES, CREATION, HOT, WEEK, MONTH
+        ACTIVITY {
+            override fun toString(): String {
+                return "activity"
+            }
+        },
+        VOTES {
+            override fun toString(): String {
+                return "votes"
+            }
+        },
+        CREATION {
+            override fun toString(): String {
+                return "creation"
+            }
+        },
+        HOT {
+            override fun toString(): String {
+                return "hot"
+            }
+        }
     }
 
     @SerializedName("title")
@@ -23,15 +42,26 @@ class Post : BaseObservable() {
             notifyPropertyChanged(BR.title)
         }
 
-    @SerializedName("creation_date")
+    @SerializedName("last_activity_date")
     @Expose
-    var postDate: Long? = null
+    var lastActivityDate: Long? = null
         @Bindable get() {
             return field
         }
         set(value) {
             field = value
-            notifyPropertyChanged(BR.postDate)
+            notifyPropertyChanged(BR.lastActivityDate)
+        }
+
+    @SerializedName("question_id")
+    @Expose
+    var questionId: Long? = null
+        @Bindable get() {
+            return field
+        }
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.questionId)
         }
 
     @SerializedName("owner")

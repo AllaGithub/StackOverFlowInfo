@@ -2,5 +2,14 @@ package com.moqod.stackoverflowinfo.network
 
 enum class Order {
 
-    DESC, ASC
+    DESC {
+        override fun toString(): String {
+            return "desc"
+        }
+    },
+    ASC {
+        override fun toString(): String {
+            return "asc"
+        }
+    }
 }
