@@ -21,9 +21,9 @@ class TagsViewModel @Inject constructor(application: Application) : BaseViewMode
 
     var dataSource: TagsDataSource? = null
 
-    val onDataSourceCreated = SingleLiveEvent<Void>()
+    var onDataSourceCreated = SingleLiveEvent<Void>()
 
-    fun getAccounts() {
+    fun getTags() {
         // DataSource
         dataSource = TagsDataSource(getApplication(), tagsRepo, BuildConfig.SOF_SITE, Tag.Sort.POPULAR, Order.DESC, schedulerProvider, compositeDisposable)
 

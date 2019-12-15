@@ -63,7 +63,7 @@ class TagsFragment : BaseFragment<TagsViewModel>() {
         vm?.setNavigator(this)
 
         if (networkStatus.hasNetworkConnectivity()) {
-            vm?.getAccounts()
+            vm?.getTags()
         } else {
             showToastErrorMessage(context, resources.getString(R.string.no_network))
         }
