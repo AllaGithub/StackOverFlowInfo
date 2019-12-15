@@ -6,32 +6,42 @@ import androidx.databinding.library.baseAdapters.BR
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class Tag : BaseObservable() {
+class Post : BaseObservable() {
 
     enum class Sort {
-        POPULAR, NAME
+        ACTIVITY, VOTES, CREATION, HOT, WEEK, MONTH
     }
 
-    @SerializedName("count")
+    @SerializedName("title")
     @Expose
-    var count: String? = null
+    var title: String? = null
         @Bindable get() {
             return field
         }
         set(value) {
             field = value
-            notifyPropertyChanged(BR.count)
+            notifyPropertyChanged(BR.title)
         }
 
-    @SerializedName("name")
+    @SerializedName("creation_date")
     @Expose
-    var name: String? = null
+    var postDate: Long? = null
         @Bindable get() {
             return field
         }
         set(value) {
             field = value
-            notifyPropertyChanged(BR.name)
+            notifyPropertyChanged(BR.postDate)
         }
 
+    @SerializedName("owner")
+    @Expose
+    var owner: Owner? = null
+        @Bindable get() {
+            return field
+        }
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.owner)
+        }
 }

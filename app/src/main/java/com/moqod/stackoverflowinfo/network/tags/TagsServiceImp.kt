@@ -8,8 +8,7 @@ import io.reactivex.Single
 import retrofit2.Response
 import javax.inject.Inject
 
-class TagsServiceImp @Inject constructor(private val tagService: TagsService) :
-    TagsRepository {
+class TagsServiceImp @Inject constructor(private val tagService: TagsService) : TagsRepository {
 
 
     override fun getTags(site: String, sort: Tag.Sort, order: Order, page: Int, pageSize: Int): Single<Response<TagResponse>> {
